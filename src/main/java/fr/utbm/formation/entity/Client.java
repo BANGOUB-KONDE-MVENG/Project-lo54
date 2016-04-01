@@ -18,6 +18,7 @@ public class Client  implements java.io.Serializable {
      private int courseSessionId;
 
     public Client() {
+        //-----
     }
 
 	
