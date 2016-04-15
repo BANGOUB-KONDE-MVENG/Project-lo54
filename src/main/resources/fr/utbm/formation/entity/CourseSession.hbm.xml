@@ -14,11 +14,7 @@
         <property name="endDate" type="date">
             <column name="END_DATE" length="10" not-null="true" />
         </property>
-        <property name="courseCode" type="char">
-            <column name="COURSE_CODE" length="1" not-null="true" />
-        </property>
-        <property name="locationId" type="int">
-            <column name="LOCATION_ID" not-null="true" />
-        </property>
+        <many-to-one class="fr.utbm.formation.entity.Course" column="COURSE_CODE" name="code" not-null="true"/>
+        <many-to-one class="fr.utbm.formation.entity.Location" column="LOCATION_ID" name="locationId" not-null="true"/>
     </class>
 </hibernate-mapping>

@@ -23,8 +23,7 @@
         <property name="email" type="java.lang.Character">
             <column name="EMAIL" length="1" />
         </property>
-        <property name="courseSessionId" type="int">
-            <column name="COURSE_SESSION_ID" not-null="true" />
-        </property>
+        <many-to-one class="fr.utbm.formation.entity.CourseSession" column="COURSE_SESSION_ID" name="courseSessionId" not-null="true"/>
+       
     </class>
 </hibernate-mapping>
