@@ -9,29 +9,29 @@ package fr.utbm.formation.entity;
 public class Course  implements java.io.Serializable {
 
 
-     private char code;
-     private char title;
+     private int code;
+     private String title;
 
     public Course() {
     }
 
-    public Course(char code, char title) {
+    public Course(int code, String title) {
        this.code = code;
        this.title = title;
     }
    
-    public char getCode() {
+    public int getCode() {
         return this.code;
     }
     
-    public void setCode(char code) {
+    public void setCode(int code) {
         this.code = code;
     }
-    public char getTitle() {
+    public String getTitle() {
         return this.title;
     }
     
-    public void setTitle(char title) {
+    public void setTitle(String title) {
         this.title = title;
     }
 

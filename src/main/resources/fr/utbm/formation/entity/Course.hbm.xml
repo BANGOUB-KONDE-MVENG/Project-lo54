@@ -4,12 +4,12 @@
 <!-- Generated 1 avr. 2016 18:23:30 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="fr.utbm.formation.entity.Course" table="COURSE" schema="KBM" optimistic-lock="version">
-        <id name="code" type="char">
-            <column name="CODE" length="1" />
-            <generator class="assigned" />
+        <id name="code" type="int">
+            <column name="CODE" length="5" />
+            <generator class="increment" />
         </id>
-        <property name="title" type="char">
-            <column name="TITLE" length="1" not-null="true" />
+        <property name="title" type="string">
+            <column name="TITLE" length="256" not-null="true" />
         </property>
     </class>
 </hibernate-mapping>
