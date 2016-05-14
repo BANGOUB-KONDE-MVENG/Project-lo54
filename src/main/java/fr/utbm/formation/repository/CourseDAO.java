@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import org.hibernate.HibernateException;
+import org.hibernate.Query;
 import org.hibernate.Session;
 
 
@@ -24,16 +25,15 @@ public class CourseDAO {
     * return list of course
     */
    public List<Course> getAllCourse(){
-      List<Course> allCourse;
-      
+      List<Course> lstCourse = new ArrayList<Course>();     
       Session session = HibernateUtil.getSessionFactory().openSession();
        try{
            session.beginTransaction();
-           allCourse = session.createQuery("from COURSE").list();
-           /*for(Iterator i = allCourse.iterator(); i.hasNext();){
-               lstCourse.add((Course)i.next());
+           List allCourse = session.createQuery("from Course").list();
+           for(Iterator i = allCourse.iterator(); i.hasNext();){
+               Course c = (Course) i.next(); 
+               lstCourse.add(c);
            }
-           */
            session.getTransaction().commit();
        }
        catch(HibernateException e){
@@ -58,15 +58,45 @@ public class CourseDAO {
            }
        } 
       
-      return allCourse;
+      return lstCourse;
    }
    
    /*
    * return course by id
    */
-   public Course getCourse(int id){
-       
-       return null;
+   public Course getCourse(int courseId){
+       Course course = null;
+       Session session = HibernateUtil.getSessionFactory().openSession();
+       try{
+           session.beginTransaction();
+           Query query = session.createQuery("from Course Where code = :idCourse");
+           query.setParameter("idCourse", courseId);
+           List c = query.list();
+           course = (Course)c.get(0);
+           session.getTransaction().commit();
+       }
+       catch(HibernateException e){
+           System.err.println("Initial SessionFactory creation failed.");
+           if(session.getTransaction() != null){
+               try{
+                   session.getTransaction().rollback();
+               }
+               catch(HibernateException e2){
+                   e2.printStackTrace();
+               }
+           }
+       }
+       finally{
+           if(session != null){
+               try{
+                   session.close();
+               }
+               catch(HibernateException e3){
+                   e3.printStackTrace();
+               }
+           }
+       } 
+       return course;
    }
    
    /*

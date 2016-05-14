@@ -6,9 +6,9 @@
     <class name="fr.utbm.formation.entity.Location" table="LOCATION" schema="KBM" optimistic-lock="version">
         <id name="id" type="int">
             <column name="ID" />
-            <generator class="assigned" />
+            <generator class="increment" />
         </id>
-        <property name="city" type="char">
+        <property name="city" type="string">
             <column name="CITY" length="1" not-null="true" />
         </property>
     </class>

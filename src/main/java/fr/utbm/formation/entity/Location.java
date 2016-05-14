@@ -10,12 +10,12 @@ public class Location  implements java.io.Serializable {
 
 
      private int id;
-     private char city;
+     private String city;
 
     public Location() {
     }
 
-    public Location(int id, char city) {
+    public Location(int id, String city) {
        this.id = id;
        this.city = city;
     }
@@ -27,11 +27,11 @@ public class Location  implements java.io.Serializable {
     public void setId(int id) {
         this.id = id;
     }
-    public char getCity() {
+    public String getCity() {
         return this.city;
     }
     
-    public void setCity(char city) {
+    public void setCity(String city) {
         this.city = city;
     }
 

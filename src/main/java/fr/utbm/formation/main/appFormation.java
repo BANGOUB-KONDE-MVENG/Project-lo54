@@ -6,7 +6,9 @@
 package fr.utbm.formation.main;
 
 import fr.utbm.formation.entity.Course;
+import fr.utbm.formation.entity.Location;
 import fr.utbm.formation.repository.CourseDAO;
+import fr.utbm.formation.repository.LocationDAO;
 import java.util.List;
 
 /**
@@ -19,16 +21,11 @@ public class appFormation {
         
         System.out.println("------ FORMATION -------");
         
-        Course c = new Course();
-        //c.setCode(10);
-        c.setTitle("LP40 klsbkbjk");
-        CourseDAO cDAO = new CourseDAO();
-        List<Course> lstCourse = cDAO.getAllCourse();
-        /*List<Course> lstCourse = cDAO.getAllCourse();
-         for(Course lst : lstCourse ){
-             System.out.println(lst.getTitle()+ "\n");
-         }
-         */
-        
+        Location l = new Location();
+        l.setCity("Besançon");
+        LocationDAO lDAO = new LocationDAO();
+        lDAO.updateLocation(2, "Belfort");
+         
+        //System.out.println(c.getTitle()+ " cours\n");
     }
 }
