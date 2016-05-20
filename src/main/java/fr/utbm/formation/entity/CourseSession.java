@@ -9,22 +9,21 @@ import java.util.Date;
  */
 public class CourseSession  implements java.io.Serializable {
 
-
      private int id;
      private Date startDate;
      private Date endDate;
-     private char courseCode;
-     private int locationId;
+     private Course course;
+     private Location location;
 
     public CourseSession() {
     }
 
-    public CourseSession(int id, Date startDate, Date endDate, char courseCode, int locationId) {
+    public CourseSession(int id, Date startDate, Date endDate, Course c, Location l) {
        this.id = id;
        this.startDate = startDate;
        this.endDate = endDate;
-       this.courseCode = courseCode;
-       this.locationId = locationId;
+       this.course = c;
+       this.location = l;
     }
    
     public int getId() {
@@ -48,19 +47,19 @@ public class CourseSession  implements java.io.Serializable {
     public void setEndDate(Date endDate) {
         this.endDate = endDate;
     }
-    public char getCourseCode() {
-        return this.courseCode;
+    public Course getCourse() {
+        return this.course;
     }
     
-    public void setCourseCode(char courseCode) {
-        this.courseCode = courseCode;
+    public void setCourse(Course c) {
+        this.course = c;
     }
-    public int getLocationId() {
-        return this.locationId;
+    public Location getLocation() {
+        return this.location;
     }
     
-    public void setLocationId(int locationId) {
-        this.locationId = locationId;
+    public void setLocation(Location l) {
+        this.location = l;
     }
 
 

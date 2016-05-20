@@ -5,26 +5,52 @@
  */
 package fr.utbm.formation.main;
 
+
 import fr.utbm.formation.entity.Course;
+import fr.utbm.formation.entity.CourseSession;
 import fr.utbm.formation.entity.Location;
 import fr.utbm.formation.repository.CourseDAO;
+import fr.utbm.formation.repository.CourseSessionDAO;
 import fr.utbm.formation.repository.LocationDAO;
-import java.util.List;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 /**
  *
- * @author Hervé MVENG
+ * @author HervÃ© MVENG
  */
 public class appFormation {
     
     public static void main( String[] args){
         
         System.out.println("------ FORMATION -------");
-        
+        /*
         Location l = new Location();
-        l.setCity("Besançon");
+        l.setCity("Londres");
         LocationDAO lDAO = new LocationDAO();
-        lDAO.updateLocation(2, "Belfort");
+        lDAO.addLocation(l);
+        
+        Course c = new Course();
+        c.setTitle("Project Manager");
+        CourseDAO cDAO = new CourseDAO();
+        cDAO.addCourse(c);
+        */
+        
+        Date t = new Date();
+        Date tt = new Date();
+        SimpleDateFormat ft = new SimpleDateFormat ("dd-MM-yyyy");
+        try { 
+          tt = ft.parse("23-05-2016");
+        } catch (ParseException e) { 
+            System.out.println("Unparseable using " + ft); 
+        }
+        
+        CourseSession cs = new CourseSession();
+        
+        
+        CourseSessionDAO csDAO = new CourseSessionDAO();
+        //csDAO.addCourseSession(cs);
          
         //System.out.println(c.getTitle()+ " cours\n");
     }
