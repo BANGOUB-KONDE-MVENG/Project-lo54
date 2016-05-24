@@ -11,6 +11,7 @@ import fr.utbm.formation.entity.CourseSession;
 import fr.utbm.formation.entity.Location;
 import fr.utbm.formation.util.HibernateUtil;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 import org.hibernate.HibernateException;
@@ -194,12 +195,13 @@ public class CourseSessionDAO {
    /* 
    * update CourseSession
    */
-   public void updateCourseSession(int courseId, String title){
+   public void updateCourseSession(int courseId, Date deb, Date end){
        Session session = HibernateUtil.getSessionFactory().openSession();
        try{
            session.beginTransaction();
            CourseSession cs = (CourseSession)session.get(CourseSession.class,courseId);
-           //c.setTitle(title);
+           cs.setStartDate(deb);
+           cs.setEndDate(end);
            session.update(cs);
            session.getTransaction().commit();
        }
@@ -224,6 +226,5 @@ public class CourseSessionDAO {
                }
            }
        }
-   }
    }
 }

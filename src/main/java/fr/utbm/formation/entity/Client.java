@@ -10,12 +10,12 @@ public class Client  implements java.io.Serializable {
 
 
      private int id;
-     private char lastname;
-     private char fisrtname;
-     private char address;
-     private char phone;
-     private Character email;
-     private int courseSessionId;
+     private String lastname;
+     private String fisrtname;
+     private String address;
+     private String phone;
+     private String email;
+     private CourseSession courseSession;
 
     public Client() {
         //-----
@@ -23,22 +23,22 @@ public class Client  implements java.io.Serializable {
     }
 
 	
-    public Client(int id, char lastname, char fisrtname, char address, char phone, int courseSessionId) {
+    public Client(int id, String lastname, String fisrtname, String address, String phone, CourseSession cs) {
         this.id = id;
         this.lastname = lastname;
         this.fisrtname = fisrtname;
         this.address = address;
         this.phone = phone;
-        this.courseSessionId = courseSessionId;
+        this.courseSession = cs;
     }
-    public Client(int id, char lastname, char fisrtname, char address, char phone, Character email, int courseSessionId) {
+    public Client(int id, String lastname, String fisrtname, String address, String phone, String email, CourseSession cs) {
        this.id = id;
        this.lastname = lastname;
        this.fisrtname = fisrtname;
        this.address = address;
        this.phone = phone;
        this.email = email;
-       this.courseSessionId = courseSessionId;
+       this.courseSession = cs;
     }
    
     public int getId() {
@@ -48,51 +48,48 @@ public class Client  implements java.io.Serializable {
     public void setId(int id) {
         this.id = id;
     }
-    public char getLastname() {
+    public String getLastname() {
         return this.lastname;
     }
     
-    public void setLastname(char lastname) {
+    public void setLastname(String lastname) {
         this.lastname = lastname;
     }
-    public char getFisrtname() {
+    public String getFisrtname() {
         return this.fisrtname;
     }
     
-    public void setFisrtname(char fisrtname) {
+    public void setFisrtname(String fisrtname) {
         this.fisrtname = fisrtname;
     }
-    public char getAddress() {
+    public String getAddress() {
         return this.address;
     }
     
-    public void setAddress(char address) {
+    public void setAddress(String address) {
         this.address = address;
     }
-    public char getPhone() {
+    public String getPhone() {
         return this.phone;
     }
     
-    public void setPhone(char phone) {
+    public void setPhone(String phone) {
         this.phone = phone;
     }
-    public Character getEmail() {
+    public String getEmail() {
         return this.email;
     }
     
-    public void setEmail(Character email) {
+    public void setEmail(String email) {
         this.email = email;
     }
-    public int getCourseSessionId() {
-        return this.courseSessionId;
+    public CourseSession getCourseSession() {
+        return this.courseSession;
     }
     
-    public void setCourseSessionId(int courseSessionId) {
-        this.courseSessionId = courseSessionId;
+    public void setCourseSession(CourseSession cs) {
+        this.courseSession = cs;
     }
-
-
-
 
 }
 

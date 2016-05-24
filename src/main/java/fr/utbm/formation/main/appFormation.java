@@ -6,12 +6,8 @@
 package fr.utbm.formation.main;
 
 
-import fr.utbm.formation.entity.Course;
 import fr.utbm.formation.entity.CourseSession;
-import fr.utbm.formation.entity.Location;
-import fr.utbm.formation.repository.CourseDAO;
 import fr.utbm.formation.repository.CourseSessionDAO;
-import fr.utbm.formation.repository.LocationDAO;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;

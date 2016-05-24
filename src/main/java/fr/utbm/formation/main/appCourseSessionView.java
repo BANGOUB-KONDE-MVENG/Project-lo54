@@ -5,15 +5,10 @@
  */
 package fr.utbm.formation.main;
 
-import fr.utbm.formation.entity.Course;
+
 import fr.utbm.formation.entity.CourseSession;
-import fr.utbm.formation.entity.Location;
 import fr.utbm.formation.repository.CourseSessionDAO;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.Iterator;
 import java.util.List;
 
 /**

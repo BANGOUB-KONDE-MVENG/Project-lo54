@@ -6,6 +6,9 @@
 package fr.utbm.formation.main;
 
 import fr.utbm.formation.repository.CourseSessionDAO;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 /**
  *
@@ -15,11 +18,19 @@ public class appCourseSessionUpdate {
     public static void main( String[] args){
         
         System.out.println("------ FORMATION -------");
-        System.out.println("\n------ suppression session -------\n");
+        System.out.println("\n------ maj session -------\n");
         
         CourseSessionDAO csDAO = new CourseSessionDAO();
+        Date t = new Date();
+        Date tt = new Date();
+        SimpleDateFormat ft = new SimpleDateFormat ("dd-MM-yyyy");
+        try { 
+          tt = ft.parse("28-05-2016");
+        } catch (ParseException e) { 
+            System.out.println("Unparseable using " + ft); 
+        }
         
-        //csDAO.deleteCourseSession(3);
+        csDAO.updateCourseSession(1, t, tt);
         
     }
 }
