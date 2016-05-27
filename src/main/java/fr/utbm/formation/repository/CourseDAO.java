@@ -200,4 +200,46 @@ public class CourseDAO {
            }
        }
    }
+   
+   /*
+     return list of course by search
+   */
+   public List<Course> findCourseByTitle(String keys){
+       List<Course> lstCourse = new ArrayList<Course>();     
+      Session session = HibernateUtil.getSessionFactory().openSession();
+       try{
+           session.beginTransaction();
+           Query query = session.createQuery("from Course Where title like :keyword");
+           query.setParameter("keyword", "%"+keys+"%");
+           List allCourse = query.list();
+           for(Iterator i = allCourse.iterator(); i.hasNext();){
+               Course c = (Course) i.next(); 
+               lstCourse.add(c);
+           }
+           session.getTransaction().commit();
+       }
+       catch(HibernateException e){
+           System.err.println("Initial SessionFactory creation failed.");
+           if(session.getTransaction() != null){
+               try{
+                   session.getTransaction().rollback();
+               }
+               catch(HibernateException e2){
+                   e2.printStackTrace();
+               }
+           }
+       }
+       finally{
+           if(session != null){
+               try{
+                   session.close();
+               }
+               catch(HibernateException e3){
+                   e3.printStackTrace();
+               }
+           }
+       } 
+      
+      return lstCourse;
+   }
 }
