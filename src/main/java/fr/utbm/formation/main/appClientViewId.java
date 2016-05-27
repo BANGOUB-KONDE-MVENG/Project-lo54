@@ -10,17 +10,22 @@ import fr.utbm.formation.repository.ClientDAO;
 
 /**
  *
- * @author Hervé MVENG
+ * @author HervÃ© MVENG
  */
 public class appClientViewId {
     public static void main( String[] args){
 
            System.out.println("------ FORMATION -------");
-           System.out.println("\n------ Update client -------\n");
+           System.out.println("\n------ Get client -------\n");
            
            ClientDAO cliDAO = new ClientDAO();
-           cliDAO.deleteClient(null);
-           //cliDAO.addClient(cli);
+           Client cli = cliDAO.getClient(1);
+           if(cli != null){
+              System.out.println(" - "+ cli.getFisrtname() + " "+ cli.getLastname() +" ");
+              System.out.println(" --> du "+ cli.getCourseSession().getStartDate().toString()  +" au "+ cli.getCourseSession().getEndDate().toString() +
+                                " à " + cli.getCourseSession().getLocation().getCity());
+              System.out.println(" --:  "+ cli.getCourseSession().getCourse().getTitle()+"\n ");
+           }
 
        }  
 }

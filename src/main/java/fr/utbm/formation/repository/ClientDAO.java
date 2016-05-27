@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import org.hibernate.HibernateException;
+import org.hibernate.Query;
 import org.hibernate.Session;
 
 /**
@@ -93,9 +94,57 @@ public class ClientDAO {
    /*
    * return client by id
    */
-   public Client getClient(int id){
+   public Client getClient(int clientId){
        
-       return null;
+       Client cli = null;
+       Session session = HibernateUtil.getSessionFactory().openSession();
+       try{
+           session.beginTransaction();
+           Query query = session.createQuery("from Client Where id = :idClient");
+           query.setParameter("idClient", clientId);
+           List c = query.list();
+           cli = (Client)c.get(0);
+           
+           CourseSession cs = (CourseSession) cli.getCourseSession();
+           Location l = (Location) cs.getLocation();
+           Course cur = (Course) cs.getCourse();
+               
+           //location
+           Location loc = new Location(l.getId(), l.getCity());
+               
+           //course
+           Course course = new Course(cur.getCode(),cur.getTitle());
+               
+           //courseSession
+           CourseSession cSession = new CourseSession(cs.getId(), cs.getStartDate(), cs.getEndDate(), course, loc);
+               
+           // set course session client
+           cli.setCourseSession(cSession);
+           
+           session.getTransaction().commit();
+       }
+       catch(HibernateException e){
+           System.err.println("Initial SessionFactory creation failed.");
+           if(session.getTransaction() != null){
+               try{
+                   session.getTransaction().rollback();
+               }
+               catch(HibernateException e2){
+                   e2.printStackTrace();
+               }
+           }
+       }
+       finally{
+           if(session != null){
+               try{
+                   session.close();
+               }
+               catch(HibernateException e3){
+                   e3.printStackTrace();
+               }
+           }
+       } 
+       return cli;
    }
    
    /*
@@ -134,8 +183,35 @@ public class ClientDAO {
    /*
    * delete client
    */
-   public void deleteClient(Client c){
-       
+   public void deleteClient(int clientId){
+       Session session = HibernateUtil.getSessionFactory().openSession();
+       try{
+           session.beginTransaction();
+           Client c = (Client)session.get(Client.class,clientId);
+           session.delete(c);
+           session.getTransaction().commit();
+       }
+       catch(HibernateException e){
+           System.err.println("Initial SessionFactory creation failed.");
+           if(session.getTransaction() != null){
+               try{
+                   session.getTransaction().rollback();
+               }
+               catch(HibernateException e2){
+                   e2.printStackTrace();
+               }
+           }
+       }
+       finally{
+           if(session != null){
+               try{
+                   session.close();
+               }
+               catch(HibernateException e3){
+                   e3.printStackTrace();
+               }
+           }
+       } 
    }
    
    /* 
