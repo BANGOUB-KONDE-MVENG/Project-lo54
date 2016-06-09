@@ -27,7 +27,7 @@ public class ClientDAO {
     * return list of client
     */
    public List<Client> getAllClient(){
-      List<Client> lstClient = new ArrayList<Client>();     
+      List<Client> lstClient = new ArrayList();     
       Session session = HibernateUtil.getSessionFactory().openSession();
        try{
            session.beginTransaction();
