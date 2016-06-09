@@ -38,6 +38,7 @@ public class CourseDAO {
        }
        catch(HibernateException e){
            System.err.println("Initial SessionFactory creation failed.");
+           e.printStackTrace();
            if(session.getTransaction() != null){
                try{
                    session.getTransaction().rollback();
