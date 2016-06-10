@@ -10,7 +10,6 @@
     <property name="show_sql">true</property>
     <property name="format_sql">true</property>
     <property name="hbm2ddl.auto">update</property>
-    
     <mapping resource="fr/utbm/formation/entity/CourseSession.hbm.xml"/>
     <mapping resource="fr/utbm/formation/entity/Client.hbm.xml"/>
     <mapping resource="fr/utbm/formation/entity/Location.hbm.xml"/>
