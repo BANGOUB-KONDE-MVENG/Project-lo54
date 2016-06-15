@@ -7,6 +7,8 @@ package fr.utbm.formation.repository;
 
 import fr.utbm.formation.entity.Location;
 import fr.utbm.formation.util.HibernateUtil;
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
@@ -21,8 +23,45 @@ public class LocationDAO {
     * return list of Location
     */
    public List<Location> getAllLocation(){
-       
-       return null;
+       List<Location> listLoc = new ArrayList();     
+      Session session = HibernateUtil.getSessionFactory().openSession();
+       try{
+           session.beginTransaction();
+           List allLocation = session.createQuery("from Location").list();
+           for(Iterator i = allLocation.iterator(); i.hasNext();){
+               // get objet
+               Location l = (Location) i.next(); 
+               
+               //location
+               Location loc = new Location(l.getId(), l.getCity());
+               
+               listLoc.add(loc);
+           }
+           session.getTransaction().commit();
+       }
+       catch(HibernateException e){
+           System.err.println("Initial SessionFactory creation failed.");
+           if(session.getTransaction() != null){
+               try{
+                   session.getTransaction().rollback();
+               }
+               catch(HibernateException e2){
+                   e2.printStackTrace();
+               }
+           }
+       }
+       finally{
+           if(session != null){
+               try{
+                   session.close();
+               }
+               catch(HibernateException e3){
+                   e3.printStackTrace();
+               }
+           }
+       } 
+      
+      return listLoc;
    }
    
    /*
