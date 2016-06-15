@@ -41,6 +41,14 @@ public class Client  implements java.io.Serializable {
        this.courseSession = cs;
     }
    
+    public Client(int id, String lastname, String fisrtname, String address, String phone, String email) {
+       this.id = id;
+       this.lastname = lastname;
+       this.fisrtname = fisrtname;
+       this.address = address;
+       this.phone = phone;
+       this.email = email;
+    }
     public int getId() {
         return this.id;
     }
