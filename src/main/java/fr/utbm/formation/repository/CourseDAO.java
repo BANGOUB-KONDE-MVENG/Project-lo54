@@ -211,7 +211,7 @@ public class CourseDAO {
        try{
            session.beginTransaction();
            Query query = session.createQuery("from Course Where title like :keyword");
-           query.setParameter("keyword", "%"+keys+"%");
+           query.setParameter("keyword", keys+"%");
            List allCourse = query.list();
            for(Iterator i = allCourse.iterator(); i.hasNext();){
                Course c = (Course) i.next(); 
