@@ -6,6 +6,7 @@
 package fr.utbm.formation.repository;
 
 
+import fr.utbm.formation.entity.Client;
 import fr.utbm.formation.entity.Course;
 import fr.utbm.formation.entity.CourseSession;
 import fr.utbm.formation.entity.Location;
@@ -20,7 +21,7 @@ import org.hibernate.Session;
 
 /**
  *
- * @author Cyntia KEMAMEN
+ * @author Hervé MVENG
  */
 public class CourseSessionDAO {
     
@@ -402,5 +403,54 @@ public class CourseSessionDAO {
       return lstSession;
    }
    
+   public List<Client> getAllParticipantCourseSession(int idCourseSession){
+       List<Client> lstCli = new ArrayList<Client>();     
+      Session session = HibernateUtil.getSessionFactory().openSession();
+       try{
+           session.beginTransaction();
+           
+           Query query = session.createQuery("from Client where courseSession.id = :idCS ");
+           query.setParameter("idCS",idCourseSession);
+           List allParticipant = query.list();
+           
+           for(Iterator i = allParticipant.iterator(); i.hasNext();){
+               Client c = (Client) i.next(); 
+               
+               Client cli = new Client();
+               cli.setId(c.getId());
+               cli.setLastname(c.getLastname());
+               cli.setFisrtname(c.getFisrtname());
+               cli.setAddress(c.getAddress());
+               cli.setEmail(c.getEmail());
+               cli.setPhone(c.getPhone());
+               cli.setCourseSession(null);
+               
+               lstCli.add(cli);
+           }
+           session.getTransaction().commit();
+       }
+       catch(HibernateException e){
+           System.err.println("Initial SessionFactory creation failed.");
+           if(session.getTransaction() != null){
+               try{
+                   session.getTransaction().rollback();
+               }
+               catch(HibernateException e2){
+                   e2.printStackTrace();
+               }
+           }
+       }
+       finally{
+           if(session != null){
+               try{
+                   session.close();
+               }
+               catch(HibernateException e3){
+                   e3.printStackTrace();
+               }
+           }
+       } 
+      return lstCli;
+   }
    
 }
