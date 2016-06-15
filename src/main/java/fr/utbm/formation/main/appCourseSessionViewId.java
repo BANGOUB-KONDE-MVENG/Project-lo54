@@ -5,8 +5,10 @@
  */
 package fr.utbm.formation.main;
 
+import fr.utbm.formation.entity.Client;
 import fr.utbm.formation.entity.CourseSession;
 import fr.utbm.formation.repository.CourseSessionDAO;
+import java.util.List;
 
 /**
  *
@@ -20,10 +22,16 @@ public class appCourseSessionViewId {
         
         CourseSessionDAO csDAO = new CourseSessionDAO();
         
-        CourseSession cs = csDAO.getCourseSession(3);
+        /*CourseSession cs = csDAO.getCourseSession(3);
         if(cs != null){
             System.out.println("Session du "+cs.getStartDate().toString()+ " au "+ cs.getEndDate().toString());
             System.out.println(" - "+ cs.getCourse().getTitle() + " à "+ cs.getLocation().getCity() +"\n");
         }
+        */
+       /* List<Client> cs = csDAO.getAllParticipantCourseSession(1);
+        for(Client lst : cs){
+            System.out.println(lst.getFisrtname());
+        }
+        */
     }
 }
