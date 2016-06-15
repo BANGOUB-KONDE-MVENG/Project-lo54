@@ -7,10 +7,13 @@ package fr.utbm.formation.main;
 
 
 import fr.utbm.formation.entity.CourseSession;
+import fr.utbm.formation.entity.Location;
 import fr.utbm.formation.repository.CourseSessionDAO;
+import fr.utbm.formation.repository.LocationDAO;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 /**
  *
@@ -33,21 +36,10 @@ public class appFormation {
         cDAO.addCourse(c);
         */
         
-        Date t = new Date();
-        Date tt = new Date();
-        SimpleDateFormat ft = new SimpleDateFormat ("dd-MM-yyyy");
-        try { 
-          tt = ft.parse("23-05-2016");
-        } catch (ParseException e) { 
-            System.out.println("Unparseable using " + ft); 
+        LocationDAO lDAO = new LocationDAO();
+        List<Location> l = lDAO.getAllLocation();
+        for(Location lst : l){
+            System.out.println(" - "+ lst.getCity());
         }
-        
-        CourseSession cs = new CourseSession();
-        
-        
-        CourseSessionDAO csDAO = new CourseSessionDAO();
-        //csDAO.addCourseSession(cs);
-         
-        //System.out.println(c.getTitle()+ " cours\n");
     }
 }
