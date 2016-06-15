@@ -19,7 +19,7 @@ import org.hibernate.Session;
 
 /**
  *
- * @author Cyntia KEMAMEN
+ * @author Hervé MVENG
  */
 public class ClientDAO {
    
